@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react"
-
+// 相对点击时移动的距离
 function useDrag(ref: React.RefObject<HTMLElement>) {
   const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 })
   useEffect(() => {
     const handleMouseDown = (event: MouseEvent) => {
-      const startX = event.pageX - dx
-      const startY = event.pageY - dy
+      const startX = event.clientX
+      const startY = event.clientY
       const handleMouseMove = (event: MouseEvent) => {
-        const moveX = event.pageX - startX
-        const moveY = event.pageY - startY
+        const moveX = event.clientX - startX
+        const moveY = event.clientY - startY
         setOffset({ dx: moveX, dy: moveY })
       }
       document.addEventListener("mousemove", handleMouseMove)
