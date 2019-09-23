@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Drag from './Drag'
+import {Drag} from './Drag'
 import DragItem from './DragItem'
 
 const list = ['aaaaaaa', 'bbbbbbbb', 'cccccccc', 'dddddd', 'eeeeeee']

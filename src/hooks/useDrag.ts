@@ -2,17 +2,20 @@ import { useState, useEffect } from "react"
 // 相对点击时移动的距离
 function useDrag(ref: React.RefObject<HTMLElement>) {
   const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 })
+  const [isDrag, setIsDrag] = useState(false)
   useEffect(() => {
     const handleMouseDown = (event: MouseEvent) => {
       const startX = event.clientX
       const startY = event.clientY
+      setIsDrag(true)
       const handleMouseMove = (event: MouseEvent) => {
-        const moveX = event.clientX - startX
-        const moveY = event.clientY - startY
+        const moveX = event.clientX -startX
+        const moveY = event.clientY -startY
         setOffset({ dx: moveX, dy: moveY })
       }
       document.addEventListener("mousemove", handleMouseMove)
       document.addEventListener("mouseup", () => {
+        setIsDrag(false)
         document.removeEventListener("mousemove", handleMouseMove)
       })
     }
@@ -28,6 +31,6 @@ function useDrag(ref: React.RefObject<HTMLElement>) {
       ref.current.style.transform = `transform3d(${dx},${dy},0)`
     }
   }, [dx, dy])
-  return { dx, dy }
+  return { dx, dy,isDrag }
 }
 export default useDrag
