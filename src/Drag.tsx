@@ -7,21 +7,21 @@ import './App.css';
 const Drag: React.FC = (props) => {
     const { children } = props;
     const containerRef = useRef(null);
-const [dropKey, setDropKey] = useState()
+    const [dropKey, setDropKey] = useState()
     useEffect(() => {
         console.log(calculateChildTop(containerRef));
-        // console.log()
+        // console.log('dataSource', dataSource)
     }, [])
     const onMove = useCallback(
-        () => {
-            console.log('当前拖动的是',dropKey)
+        (str) => {
+            console.log('当前拖动的是', dropKey, str)
         },
         [dropKey],
     )
     return (
-            <div className="dragContainer" ref={containerRef}>
-                {children}
-            </div>
+        <div className="dragContainer" ref={containerRef}>
+            {children}
+        </div>
     );
 }
 

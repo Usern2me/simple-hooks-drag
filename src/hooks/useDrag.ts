@@ -7,10 +7,11 @@ function useDrag(ref: React.RefObject<HTMLElement>) {
     const handleMouseDown = (event: MouseEvent) => {
       const startX = event.clientX
       const startY = event.clientY
+      setOffset({ dx: 0, dy: 0 })
       setIsDrag(true)
       const handleMouseMove = (event: MouseEvent) => {
-        const moveX = event.clientX -startX
-        const moveY = event.clientY -startY
+        const moveX = event.clientX - startX
+        const moveY = event.clientY - startY
         setOffset({ dx: moveX, dy: moveY })
       }
       document.addEventListener("mousemove", handleMouseMove)
@@ -31,6 +32,6 @@ function useDrag(ref: React.RefObject<HTMLElement>) {
       ref.current.style.transform = `transform3d(${dx},${dy},0)`
     }
   }, [dx, dy])
-  return { dx, dy,isDrag }
+  return { dx, dy, isDrag }
 }
 export default useDrag
