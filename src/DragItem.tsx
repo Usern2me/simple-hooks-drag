@@ -1,21 +1,13 @@
 import React, { useRef, useState, useEffect, useMemo, createContext, useContext } from 'react';
-import useDrag from './hooks/useDrag';
-import { transformItem } from './utils';
 
+/**
+ * 只负责展示
+ */
 const DragItem: React.FC = (props) => {
     const { children } = props;
-    const childRef = useRef(null);
-    const { dx, dy, isDrag } = useDrag(childRef);
-    useEffect(() => {
-        isDrag && transformItem(childRef.current as any, dx, dy);
-        return () => {
-            transformItem(childRef.current as any)
-        };
-    }, [dx, dy, isDrag])
-    useMemo(() => {
-    }, [isDrag])
+    const childRef = useRef(null)
     return (
-        <div ref={childRef}>{children}</div>
+        <div {...props} ref={childRef}>{children}</div>
     )
 }
 export default DragItem;
